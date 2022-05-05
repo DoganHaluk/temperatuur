@@ -1,6 +1,6 @@
 package be.vdab.temperatuur.restclients;
 
-import be.vdab.temperatuur.dto.User;
+import be.vdab.temperatuur.dto.OpenWeatherMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,10 +25,10 @@ class DefaultOpenWeatherMapClient implements OpenWeatherMapClient {
             return Optional.of(client.get()
                     .uri(userURI, uriBuilder -> uriBuilder.build(naam))
                     .retrieve()
-                    .bodyToMono(User.class)
+                    .bodyToMono(OpenWeatherMap.class)
                     .block()
-                    .getData()
-                    .getTemperatuur());
+                    .getMain()
+                    .getTemp());
         } catch (WebClientResponseException.NotFound ex) {
             return Optional.empty();
         }
