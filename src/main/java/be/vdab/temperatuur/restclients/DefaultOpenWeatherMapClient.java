@@ -14,7 +14,7 @@ class DefaultOpenWeatherMapClient implements OpenWeatherMapClient {
     private final WebClient client;
     private final String userURI;
 
-    DefaultOpenWeatherMapClient(WebClient.Builder builder, @Value("${openweathermap.user}") String userURI) {
+    DefaultOpenWeatherMapClient(WebClient.Builder builder, @Value("${openweathermap}") String userURI) {
         client = builder.build();
         this.userURI = userURI;
     }
